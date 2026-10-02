@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ECE GATE Academy - Admin</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo-area">
+
+      <div class="logo">
+        G
+      </div>
+
+      <div class="logo-text">
+        <h1>ECE GATE Academy</h1>
+        <p>Admin Management</p>
+      </div>
+
+    </div>
+
+    <a href="/" class="admin-link">
+      Student Website
+    </a>
+
+  </header>
+
+
+  <main class="admin-container">
+
+    <div class="admin-intro">
+
+      <span class="badge">
+        ADMIN PANEL
+      </span>
+
+      <h2>
+        Manage Class Content
+      </h2>
+
+      <p>
+        Upload daily class notes and PDF-based short tests.
+      </p>
+
+    </div>
+
+
+    <!-- =====================================
+         CLASS NOTES
+         ===================================== -->
+
+    <section class="admin-card">
+
+      <h2>
+        Add Class Notes
+      </h2>
+
+      <form id="noteForm">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label>
+              Class Title
+            </label>
+
+            <input
+              type="text"
+              id="noteTitle"
+              name="title"
+              placeholder="Example: Differential Equations - Class 1"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Subject
+            </label>
+
+            <input
+              type="text"
+              id="noteSubject"
+              name="subject"
+              placeholder="Example: Engineering Mathematics"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Lesson / Topic
+            </label>
+
+            <input
+              type="text"
+              id="noteLesson"
+              name="lesson"
+              placeholder="Example: First Order Differential Equations"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Date
+            </label>
+
+            <input
+              type="date"
+              id="noteDate"
+              name="date"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            YouTube Video Link
+            <span class="optional">
+              (Optional)
+            </span>
+          </label>
+
+          <input
+            type="url"
+            id="youtube"
+            name="youtube"
+            placeholder="https://youtube.com/..."
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Notes / PPT / PDF
+            <span class="optional">
+              (Optional)
+            </span>
+          </label>
+
+          <input
+            type="file"
+            id="noteFile"
+            name="file"
+            accept=".pdf,.ppt,.pptx,.doc,.docx"
+          >
+
+          <small>
+            Maximum file size: 25 MB
+          </small>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
+          PUBLISH CLASS NOTES
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- =====================================
+         PDF SHORT TEST
+         ===================================== -->
+
+    <section class="admin-card">
+
+      <h2>
+        Create PDF Short Test
+      </h2>
+
+      <p class="admin-description">
+        Upload the question paper as a PDF.
+        Students will open the PDF and type their answers on the website.
+      </p>
+
+
+      <form id="testForm">
+
+        <div class="form-grid">
+
+          <!-- TEST TITLE -->
+
+          <div class="form-group">
+
+            <label>
+              Test Title
+            </label>
+
+            <input
+              type="text"
+              id="testTitle"
+              name="title"
+              placeholder="Example: Differential Equations Short Test"
+              required
+            >
+
+          </div>
+
+
+          <!-- SUBJECT -->
+
+          <div class="form-group">
+
+            <label>
+              Subject
+            </label>
+
+            <input
+              type="text"
+              id="testSubject"
+              name="subject"
+              placeholder="Example: Engineering Mathematics"
+              required
+            >
+
+          </div>
+
+
+          <!-- DATE -->
+
+          <div class="form-group">
+
+            <label>
+              Test Date
+            </label>
+
+            <input
+              type="date"
+              id="testDate"
+              name="date"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- QUESTION PDF -->
+
+        <div class="upload-box">
+
+          <div class="upload-icon">
+            📄
+          </div>
+
+          <h3>
+            Question Paper PDF
+          </h3>
+
+          <p>
+            Upload today's Short Test question paper.
+          </p>
+
+          <input
+            type="file"
+            id="questionsPdf"
+            name="questionsPdf"
+            accept=".pdf"
+            required
+          >
+
+          <small>
+            PDF only • Maximum 25 MB
+          </small>
+
+        </div>
+
+
+        <!-- PUBLISH -->
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
+          PUBLISH SHORT TEST
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- =====================================
+         UPLOAD ANSWER PDF
+         ===================================== -->
+
+    <section class="admin-card">
+
+      <h2>
+        Upload Answer Key
+      </h2>
+
+      <p class="admin-description">
+        Next day, select the test and upload the official answer PDF.
+      </p>
+
+
+      <form id="answerForm">
+
+        <div class="form-group">
+
+          <label>
+            Select Short Test
+          </label>
+
+          <select
+            id="answerTestSelect"
+            required
+          >
+
+            <option value="">
+              Select a test
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="upload-box">
+
+          <div class="upload-icon">
+            ✅
+          </div>
+
+          <h3>
+            Answer PDF
+          </h3>
+
+          <p>
+            Upload the official answers / solutions PDF.
+          </p>
+
+          <input
+            type="file"
+            id="answersPdf"
+            name="answersPdf"
+            accept=".pdf"
+            required
+          >
+
+          <small>
+            PDF only • Maximum 25 MB
+          </small>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
+          UPLOAD ANSWERS
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- =====================================
+         PUBLISHED NOTES
+         ===================================== -->
+
+    <section class="admin-card">
+
+      <span class="badge">
+        CONTENT
+      </span>
+
+      <h2>
+        Published Notes
+      </h2>
+
+      <div
+        id="adminNotesList"
+        class="admin-list"
+      >
+
+        <p class="loading">
+          Loading notes...
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================
+         PUBLISHED TESTS
+         ===================================== -->
+
+    <section class="admin-card">
+
+      <span class="badge">
+        TESTS
+      </span>
+
+      <h2>
+        Published Short Tests
+      </h2>
+
+      <div
+        id="adminTestsList"
+        class="admin-list"
+      >
+
+        <p class="loading">
+          Loading tests...
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 ECE GATE Academy
+    </p>
+
+  </footer>
+
+
+  <script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,609 @@
+/* ========================================= 
+   ECE GATE ACADEMY - MAIN CSS 
+   ========================================= */ 
+ 
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+} 
+ 
+body { 
+  font-family: Arial, Helvetica, sans-serif; 
+  background: #f5f7fb; 
+  color: #172033; 
+  line-height: 1.6; 
+} 
+ 
+/* ========================================= 
+   HEADER 
+   ========================================= */ 
+ 
+header { 
+  background: #ffffff; 
+  border-bottom: 1px solid #e5e7eb; 
+  padding: 18px 7%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 20px; 
+  position: sticky; 
+  top: 0; 
+  z-index: 100; 
+} 
+ 
+.logo-area { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+} 
+ 
+.logo { 
+  width: 48px; 
+  height: 48px; 
+  border-radius: 12px; 
+  background: #173b7a; 
+  color: white; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 22px; 
+  font-weight: bold; 
+} 
+ 
+.logo-text h1 { 
+  font-size: 21px; 
+  color: #173b7a; 
+} 
+ 
+.logo-text p { 
+  font-size: 12px; 
+  color: #6b7280; 
+} 
+ 
+.date-box { 
+  font-size: 14px; 
+  color: #555f73; 
+} 
+ 
+/* ========================================= 
+   MAIN CONTAINER 
+   ========================================= */ 
+ 
+.container { 
+  width: 86%; 
+  max-width: 1200px; 
+  margin: 35px auto; 
+} 
+ 
+/* ========================================= 
+   HERO 
+   ========================================= */ 
+ 
+.hero { 
+  background: linear-gradient( 
+    135deg, 
+    #173b7a, 
+    #2859a7 
+  ); 
+ 
+  color: white; 
+  border-radius: 20px; 
+  padding: 45px; 
+  margin-bottom: 30px; 
+  box-shadow: 0 12px 30px rgba(23, 59, 122, 0.15); 
+} 
+ 
+.hero h1 { 
+  font-size: 38px; 
+  margin-bottom: 8px; 
+} 
+ 
+.hero p { 
+  font-size: 16px; 
+  opacity: 0.9; 
+} 
+ 
+/* ========================================= 
+   SECTION 
+   ========================================= */ 
+ 
+.section { 
+  margin-bottom: 30px; 
+} 
+ 
+.section-title { 
+  font-size: 25px; 
+  margin-bottom: 15px; 
+  color: #172033; 
+} 
+ 
+/* ========================================= 
+   LATEST CLASS 
+   ========================================= */ 
+ 
+.latest-card { 
+  background: white; 
+  border-radius: 18px; 
+  padding: 25px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 20px; 
+  border: 1px solid #e5e7eb; 
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.04); 
+} 
+ 
+.latest-card h2 { 
+  font-size: 24px; 
+  margin: 8px 0; 
+  color: #172033; 
+} 
+ 
+.latest-card p { 
+  color: #657086; 
+} 
+ 
+.latest-card small { 
+  color: #8a93a3; 
+} 
+ 
+/* ========================================= 
+   BADGE 
+   ========================================= */ 
+ 
+.badge { 
+  display: inline-block; 
+  background: #eaf0ff; 
+  color: #173b7a; 
+  font-size: 11px; 
+  font-weight: bold; 
+  padding: 5px 10px; 
+  border-radius: 20px; 
+  letter-spacing: 0.5px; 
+} 
+ 
+/* ========================================= 
+   BUTTONS 
+   ========================================= */ 
+ 
+.primary-btn { 
+  border: none; 
+  background: #173b7a; 
+  color: white; 
+  padding: 11px 20px; 
+  border-radius: 9px; 
+  cursor: pointer; 
+  font-weight: bold; 
+  transition: 0.2s; 
+} 
+ 
+.primary-btn:hover { 
+  background: #0f2b5b; 
+  transform: translateY(-1px); 
+} 
+ 
+.outline-btn { 
+  background: white; 
+  color: #173b7a; 
+  border: 1px solid #173b7a; 
+  padding: 9px 18px; 
+  border-radius: 9px; 
+  cursor: pointer; 
+  font-weight: bold; 
+} 
+ 
+.outline-btn:hover { 
+  background: #173b7a; 
+  color: white; 
+} 
+ 
+.danger-btn { 
+  border: none; 
+  background: #dc3545; 
+  color: white; 
+  padding: 8px 14px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+} 
+ 
+/* ========================================= 
+   DASHBOARD 
+   ========================================= */ 
+ 
+.dashboard { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+} 
+ 
+.dashboard-card { 
+  background: white; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 16px; 
+  padding: 25px; 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04); 
+} 
+ 
+.dashboard-card h3 { 
+  font-size: 15px; 
+  color: #6b7280; 
+  margin-bottom: 8px; 
+} 
+ 
+.dashboard-number { 
+  font-size: 34px; 
+  font-weight: bold; 
+  color: #173b7a; 
+} 
+ 
+/* ========================================= 
+   CONTENT ROW 
+   ========================================= */ 
+ 
+.content-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+} 
+ 
+.content-row { 
+  background: white; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 14px; 
+  padding: 18px 20px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 15px; 
+} 
+ 
+.content-row h3 { 
+  color: #172033; 
+  font-size: 17px; 
+  margin-bottom: 4px; 
+} 
+ 
+.content-row p { 
+  color: #687386; 
+  font-size: 14px; 
+} 
+ 
+.content-row small { 
+  color: #9aa1ad; 
+  font-size: 12px; 
+} 
+ 
+/* ========================================= 
+   EMPTY STATE 
+   ========================================= */ 
+ 
+.empty-state { 
+  background: white; 
+  border: 1px dashed #cbd2dc; 
+  border-radius: 14px; 
+  padding: 30px; 
+  text-align: center; 
+  color: #737d8e; 
+} 
+ 
+.empty-state h3 { 
+  color: #172033; 
+  margin-bottom: 5px; 
+} 
+ 
+/* ========================================= 
+   TEST MODAL 
+   ========================================= */ 
+ 
+.modal { 
+  position: fixed; 
+  inset: 0; 
+  background: rgba(0, 0, 0, 0.55); 
+  display: none; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 20px; 
+  z-index: 1000; 
+} 
+ 
+.modal.show { 
+  display: flex; 
+} 
+ 
+.modal-content { 
+  background: white; 
+  width: 100%; 
+  max-width: 700px; 
+  max-height: 90vh; 
+  overflow-y: auto; 
+  border-radius: 18px; 
+  padding: 28px; 
+  position: relative; 
+} 
+ 
+.modal-content h2 { 
+  color: #173b7a; 
+  margin-bottom: 20px; 
+} 
+ 
+.close-btn { 
+  position: absolute; 
+  top: 15px; 
+  right: 18px; 
+  border: none; 
+  background: transparent; 
+  font-size: 25px; 
+  cursor: pointer; 
+} 
+ 
+/* ========================================= 
+   QUESTIONS 
+   ========================================= */ 
+ 
+.question { 
+  background: #f7f8fb; 
+  border: 1px solid #e2e6ed; 
+  padding: 18px; 
+  border-radius: 12px; 
+  margin-bottom: 15px; 
+} 
+ 
+.question h3 { 
+  font-size: 16px; 
+  margin-bottom: 12px; 
+} 
+ 
+.option { 
+  display: block; 
+  background: white; 
+  border: 1px solid #e0e4ea; 
+  padding: 10px; 
+  border-radius: 8px; 
+  margin-top: 8px; 
+  cursor: pointer; 
+} 
+ 
+.option:hover { 
+  background: #f0f4ff; 
+} 
+ 
+/* ========================================= 
+   ADMIN PAGE 
+   ========================================= */ 
+ 
+.admin-container { 
+  width: 90%; 
+  max-width: 1100px; 
+  margin: 30px auto; 
+} 
+ 
+.admin-card { 
+  background: white; 
+  border-radius: 16px; 
+  padding: 25px; 
+  margin-bottom: 25px; 
+  border: 1px solid #e5e7eb; 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04); 
+} 
+ 
+.admin-card h2 { 
+  color: #173b7a; 
+  margin-bottom: 18px; 
+} 
+ 
+.form-group { 
+  margin-bottom: 15px; 
+} 
+ 
+.form-group label { 
+  display: block; 
+  font-weight: bold; 
+  margin-bottom: 6px; 
+  color: #374151; 
+} 
+ 
+.form-group input, 
+.form-group textarea, 
+.form-group select { 
+  width: 100%; 
+  padding: 11px 12px; 
+  border: 1px solid #d4d9e1; 
+  border-radius: 8px; 
+  outline: none; 
+  font-family: inherit; 
+  font-size: 14px; 
+} 
+ 
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus { 
+  border-color: #173b7a; 
+} 
+ 
+.form-group textarea { 
+  min-height: 140px; 
+  resize: vertical; 
+} 
+ 
+.admin-item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 15px; 
+  padding: 15px; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 10px; 
+  margin-bottom: 10px; 
+} 
+ 
+.admin-item strong { 
+  color: #172033; 
+} 
+ 
+.admin-item p { 
+  color: #737d8e; 
+  font-size: 13px; 
+} 
+ 
+/* ========================================= 
+   FOOTER 
+   ========================================= */ 
+ 
+footer { 
+  background: #172033; 
+  color: white; 
+  text-align: center; 
+  padding: 25px; 
+  margin-top: 50px; 
+} 
+ 
+footer p { 
+  font-size: 13px; 
+  opacity: 0.8; 
+} 
+ 
+/* ========================================= 
+   RESPONSIVE 
+   ========================================= */ 
+ 
+@media (max-width: 768px) { 
+ 
+  header { 
+    padding: 15px 5%; 
+  } 
+ 
+  .container { 
+    width: 92%; 
+  } 
+ 
+  .hero { 
+    padding: 30px 22px; 
+  } 
+ 
+  .hero h1 { 
+    font-size: 28px; 
+  } 
+ 
+  .dashboard { 
+    grid-template-columns: 1fr; 
+  } 
+ 
+  .latest-card { 
+    flex-direction: column; 
+    align-items: flex-start; 
+  } 
+ 
+  .content-row { 
+    flex-direction: column; 
+    align-items: flex-start; 
+  } 
+ 
+  .content-row button { 
+    width: 100%; 
+  } 
+ 
+  .admin-container { 
+    width: 92%; 
+  } 
+ 
+  .admin-item { 
+    flex-direction: column; 
+    align-items: flex-start; 
+  } 
+ 
+  .admin-item button { 
+    width: 100%; 
+  } 
+} 
+ 
+@media (max-width: 480px) { 
+ 
+  .logo-text h1 { 
+    font-size: 17px; 
+  } 
+ 
+  .date-box { 
+    display: none; 
+  } 
+ 
+  .hero h1 { 
+    font-size: 24px; 
+  } 
+ 
+  .section-title { 
+    font-size: 21px; 
+  } 
+ 
+  .latest-card h2 { 
+    font-size: 20px; 
+  } 
+} 
+/* ADMIN PAGE EXTRA STYLES */ 
+ 
+.admin-intro { 
+  margin-bottom: 25px; 
+} 
+ 
+.admin-intro h2 { 
+  font-size: 28px; 
+  margin: 8px 0 5px; 
+  color: #172033; 
+} 
+ 
+.admin-intro p { 
+  color: #687386; 
+} 
+ 
+.admin-link { 
+  color: #173b7a; 
+  font-weight: bold; 
+  text-decoration: none; 
+} 
+ 
+.form-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 18px; 
+} 
+ 
+.optional { 
+  color: #8a93a3; 
+  font-weight: normal; 
+} 
+ 
+.form-group small { 
+  display: block; 
+  margin-top: 5px; 
+  color: #8a93a3; 
+  font-size: 12px; 
+} 
+ 
+.section-heading { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+} 
+ 
+.admin-list { 
+  margin-top: 15px; 
+} 
+ 
+.loading { 
+  color: #687386; 
+  padding: 15px 0; 
+} 
+ 
+@media (max-width: 700px) { 
+  .form-grid { 
+    grid-template-columns: 1fr; 
+  } 
+ 
+  .admin-intro h2 { 
+    font-size: 24px; 
+  } 
+ 
+  .admin-link { 
+    font-size: 13px; 
+  } 
+}

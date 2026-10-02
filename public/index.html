@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ECE GATE ACADEMY</title>
+
+  <style>
+    /* =========================
+       RESET
+       ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #172033;
+      line-height: 1.6;
+      transition: 0.3s;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* =========================
+       DARK MODE
+       ========================= */
+
+    body.dark {
+      background: #111111;
+      color: #eeeeee;
+    }
+
+    body.dark .card,
+    body.dark .test-card,
+    body.dark .note-card,
+    body.dark .dashboard-card {
+      background: #1c1c1c;
+      border-color: #333333;
+      color: #eeeeee;
+    }
+
+    body.dark .muted {
+      color: #aaaaaa;
+    }
+
+    body.dark .section-title {
+      color: #ff3333;
+    }
+
+    body.dark .theme-btn {
+      background: #222;
+      color: #ff3333;
+      border-color: #ff3333;
+    }
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    header {
+      background: #262626;
+      color: red;
+      border-bottom: 1px solid #222;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 8px;
+
+      border-radius: 16px;
+
+      background: #1e1e1e;
+      border: 2px solid red;
+
+      display: grid;
+      place-items: center;
+
+      color: red;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: -1px;
+    }
+
+    .academy-title {
+      color: white;
+      font-size: 31px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .academy-subtitle {
+      color: #ff7777;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .theme-btn {
+      position: absolute;
+      right: 20px;
+      top: 22px;
+
+      border: 1px solid red;
+      background: light gray;
+      color: red;
+
+      padding: 8px 13px;
+      border-radius: 8px;
+
+      font-weight: bold;
+    }
+
+    .theme-btn:hover {
+      background: red;
+      color: #262626;
+    }
+
+    /* =========================
+       MAIN
+       ========================= */
+
+    .container {
+      max-width: 1150px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+      background: #262626;
+      color: red;
+
+      border-radius: 18px;
+      padding: 32px;
+
+      margin-bottom: 22px;
+
+      border: 1px solid #222;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    .hero p {
+      color: #ff7777;
+    }
+
+    /* =========================
+       CARDS
+       ========================= */
+
+    .card {
+      background: white;
+
+      border: 1px solid #e0e5eb;
+      border-radius: 16px;
+
+      padding: 24px;
+      margin-bottom: 20px;
+
+      box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title {
+      color: #173b7a;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    /* =========================
+       DASHBOARD
+       ========================= */
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .dashboard-card {
+      background: #f8f9fb;
+
+      border: 1px solid #e1e6ed;
+      border-radius: 12px;
+
+      padding: 18px;
+    }
+
+    .dashboard-card p {
+      color: #687386;
+      font-size: 13px;
+    }
+
+    .dashboard-card h3 {
+      font-size: 30px;
+      color: #173b7a;
+      margin-top: 5px;
+    }
+
+    /* =========================
+       NOTE CARD
+       ========================= */
+
+    .note-card,
+    .test-card {
+      background: white;
+
+      border: 1px solid #e0e5eb;
+      border-radius: 13px;
+
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .note-head,
+    .test-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .note-card h3,
+    .test-card h3 {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .muted {
+      color: #687386;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+
+      background: #eaf0ff;
+      color: #173b7a;
+
+      padding: 4px 9px;
+      border-radius: 20px;
+
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* =========================
+       BUTTONS
+       ========================= */
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 13px;
+    }
+
+    .primary-btn {
+      background: #173b7a;
+      color: white;
+
+      border: none;
+      padding: 10px 16px;
+
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .primary-btn:hover {
+      background: #0e2c60;
+    }
+
+    .secondary-btn {
+      background: white;
+      color: #173b7a;
+
+      border: 1px solid #173b7a;
+
+      padding: 9px 15px;
+
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .answer-btn {
+      background: #147a47;
+      color: white;
+
+      border: none;
+
+      padding: 10px 15px;
+
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    /* =========================
+       EMPTY
+       ========================= */
+
+    .empty {
+      text-align: center;
+
+      padding: 25px;
+
+      border: 1px dashed #c8d1de;
+      border-radius: 10px;
+
+      color: #687386;
+    }
+
+    /* =========================
+       MODAL
+       ========================= */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+
+      background: rgba(0, 0, 0, 0.65);
+
+      z-index: 1000;
+
+      padding: 20px;
+
+      overflow-y: auto;
+    }
+
+    .modal.show {
+      display: block;
+    }
+
+    .modal-content {
+      position: relative;
+
+      max-width: 1050px;
+
+      margin: 20px auto;
+
+      background: white;
+
+      border-radius: 15px;
+
+      padding: 20px;
+    }
+
+    body.dark .modal-content {
+      background: #1c1c1c;
+      color: white;
+    }
+
+    .close-btn {
+      position: absolute;
+
+      top: 9px;
+      right: 14px;
+
+      background: transparent;
+      border: none;
+
+      font-size: 28px;
+
+      color: #666;
+    }
+
+    .pdf-container {
+      margin-top: 15px;
+
+      background: #f3f4f6;
+
+      padding: 8px;
+
+      border-radius: 10px;
+    }
+
+    .pdf-container iframe {
+      width: 100%;
+      height: 600px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background: white;
+    }
+
+    /* =========================
+       ANSWER BOX
+       ========================= */
+
+    .answer-section {
+      margin-top: 20px;
+    }
+
+    .answer-section label {
+      display: block;
+
+      font-size: 18px;
+      font-weight: bold;
+
+      margin-bottom: 8px;
+    }
+
+    .answer-section textarea {
+      width: 100%;
+
+      min-height: 220px;
+
+      padding: 13px;
+
+      border: 1px solid #ccd4df;
+
+      border-radius: 10px;
+
+      resize: vertical;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 15px;
+    }
+
+    body.dark .answer-section textarea {
+      background: #111;
+      color: white;
+      border-color: #444;
+    }
+
+    /* =========================
+       MESSAGE
+       ========================= */
+
+    .message {
+      margin-top: 12px;
+
+      padding: 11px;
+
+      border-radius: 8px;
+
+      font-size: 14px;
+
+      display: none;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.success {
+      background: #edf9f2;
+      color: #12633b;
+    }
+
+    .message.error {
+      background: #fff0ef;
+      color: #a32118;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+      text-align: center;
+
+      color: #687386;
+
+      padding: 28px;
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 750px) {
+
+      .academy-title {
+        font-size: 24px;
+      }
+
+      .theme-btn {
+        position: static;
+        margin-top: 12px;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .note-head,
+      .test-head {
+        flex-direction: column;
+      }
+
+      .pdf-container iframe {
+        height: 450px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================================
+       HEADER
+       =================================== -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <div class="logo">
+        EG
+      </div>
+
+      <div class="academy-title">
+        ECE GATE ACADEMY
+      </div>
+
+      <div class="academy-subtitle">
+        Learn • Practice • Improve
+      </div>
+
+      <button
+        class="theme-btn"
+        onclick="toggleTheme()"
+        id="themeButton"
+      >
+        🌙 Dark Mode
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- ===================================
+       MAIN
+       =================================== -->
+
+  <main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <h2>
+        Welcome to ECE GATE Academy
+      </h2>
+
+      <p>
+        Class Notes • Daily Short Tests • Practice
+      </p>
+
+    </section>
+
+
+    <!-- ===================================
+         DASHBOARD
+         =================================== -->
+
+    <section class="card">
+
+      <h2 class="section-title">
+        Dashboard
+      </h2>
+
+      <div class="dashboard">
+
+        <div class="dashboard-card">
+          <p>Available Tests</p>
+          <h3 id="testCount">0</h3>
+        </div>
+
+        <div class="dashboard-card">
+          <p>Attempted Tests</p>
+          <h3 id="attemptedCount">0</h3>
+        </div>
+
+        <div class="dashboard-card">
+          <p>Class Notes</p>
+          <h3 id="noteCount">0</h3>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================
+         CLASS NOTES
+         =================================== -->
+
+    <section class="card">
+
+      <h2 class="section-title">
+        Class Notes
+      </h2>
+
+      <div id="notesList">
+        <div class="empty">
+          Loading class notes...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===================================
+         SHORT TESTS
+         =================================== -->
+
+    <section class="card">
+
+      <h2 class="section-title">
+        Short Tests
+      </h2>
+
+      <div id="testsList">
+        <div class="empty">
+          Loading tests...
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ===================================
+       TEST / PDF MODAL
+       =================================== -->
+
+  <div
+    id="testModal"
+    class="modal"
+  >
+
+    <div class="modal-content">
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+      <div id="modalBody"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================
+       FOOTER
+       =================================== -->
+
+  <footer>
+
+    © 2026 ECE GATE Academy
+
+  </footer>
+
+
+  <script>
+
+    /* =====================================
+       THEME
+       ===================================== */
+
+    function toggleTheme() {
+
+      document.body.classList.toggle("dark");
+
+      const dark =
+        document.body.classList.contains("dark");
+
+      localStorage.setItem(
+        "eceTheme",
+        dark ? "dark" : "light"
+      );
+
+      document.getElementById(
+        "themeButton"
+      ).textContent =
+        dark
+          ? "☀️ Light Mode"
+          : "🌙 Dark Mode";
+    }
+
+
+    function loadTheme() {
+
+      const saved =
+        localStorage.getItem("eceTheme");
+
+      if (saved === "dark") {
+
+        document.body.classList.add("dark");
+
+        document.getElementById(
+          "themeButton"
+        ).textContent =
+          "☀️ Light Mode";
+      }
+    }
+
+
+    /* =====================================
+       HTML ESCAPE
+       ===================================== */
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+
+    /* =====================================
+       DATE FORMAT
+       ===================================== */
+
+    function formatDate(date) {
+
+      if (!date) {
+        return "";
+      }
+
+      const parts =
+        date.split("-");
+
+      if (parts.length === 3) {
+
+        return (
+          parts[2] +
+          "/" +
+          parts[1] +
+          "/" +
+          parts[0]
+        );
+      }
+
+      return date;
+    }
+
+
+    /* =====================================
+       LOAD WEBSITE DATA
+       ===================================== */
+
+    async function loadData() {
+
+      try {
+
+        const response =
+          await fetch("/api/data");
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Unable to load website data."
+          );
+        }
+
+        const data =
+          await response.json();
+
+        renderNotes(
+          data.notes || []
+        );
+
+        renderTests(
+          data.tests || []
+        );
+
+        updateDashboard(
+          data
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+          "notesList"
+        ).innerHTML = `
+          <div class="empty">
+            Unable to load class notes.
+          </div>
+        `;
+
+        document.getElementById(
+          "testsList"
+        ).innerHTML = `
+          <div class="empty">
+            Unable to load short tests.
+          </div>
+        `;
+      }
+    }
+
+
+    /* =====================================
+       DASHBOARD
+       ===================================== */
+
+    function updateDashboard(data) {
+
+      const notes =
+        data.notes || [];
+
+      const tests =
+        data.tests || [];
+
+      const submissions =
+        data.submissions || [];
+
+
+      document.getElementById(
+        "testCount"
+      ).textContent =
+        tests.length;
+
+
+      const uniqueAttempts =
+        new Set(
+          submissions.map(
+            item => item.testId
+          )
+        );
+
+
+      document.getElementById(
+        "attemptedCount"
+      ).textContent =
+        uniqueAttempts.size;
+
+
+      document.getElementById(
+        "noteCount"
+      ).textContent =
+        notes.length;
+    }
+
+
+    /* =====================================
+       RENDER CLASS NOTES
+       ===================================== */
+
+    function renderNotes(notes) {
+
+      const container =
+        document.getElementById(
+          "notesList"
+        );
+
+
+      if (!notes.length) {
+
+        container.innerHTML = `
+          <div class="empty">
+            No class notes available yet.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        notes.map(
+          note => `
+
+            <div class="note-card">
+
+              <div class="note-head">
+
+                <div>
+
+                  <span class="badge">
+                    ${escapeHtml(
+                      note.subject ||
+                      "CLASS NOTE"
+                    )}
+                  </span>
+
+                  <h3>
+                    ${escapeHtml(
+                      note.title
+                    )}
+                  </h3>
+
+                  <p class="muted">
+
+                    ${escapeHtml(
+                      note.lesson || ""
+                    )}
+
+                    ${
+                      note.lesson
+                        ? " • "
+                        : ""
+                    }
+
+                    ${formatDate(
+                      note.date
+                    )}
+
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="actions">
+
+                ${
+                  note.file
+                    ? `
+                      <button
+                        class="primary-btn"
+                        onclick="openNote(
+                          '${note.file}'
+                        )"
+                      >
+                        OPEN NOTES
+                      </button>
+                    `
+                    : ""
+                }
+
+
+                ${
+                  note.youtube
+                    ? `
+                      <button
+                        class="secondary-btn"
+                        onclick="watchClass(
+                          '${escapeHtml(
+                            note.youtube
+                          )}'
+                        )"
+                      >
+                        WATCH CLASS
+                      </button>
+                    `
+                    : ""
+                }
+
+              </div>
+
+            </div>
+
+          `
+        ).join("");
+    }
+
+
+    /* =====================================
+       RENDER TESTS
+       ===================================== */
+
+    function renderTests(tests) {
+
+      const container =
+        document.getElementById(
+          "testsList"
+        );
+
+
+      if (!tests.length) {
+
+        container.innerHTML = `
+          <div class="empty">
+            No short tests available yet.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        tests.map(
+          test => `
+
+            <div class="test-card">
+
+              <div class="test-head">
+
+                <div>
+
+                  <span class="badge">
+                    SHORT TEST
+                  </span>
+
+                  <h3>
+                    ${escapeHtml(
+                      test.title
+                    )}
+                  </h3>
+
+                  <p class="muted">
+
+                    ${escapeHtml(
+                      test.subject || ""
+                    )}
+
+                    ${
+                      test.subject
+                        ? " • "
+                        : ""
+                    }
+
+                    ${formatDate(
+                      test.date
+                    )}
+
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="actions">
+
+                <button
+                  class="primary-btn"
+                  onclick="openTest(
+                    '${test.id}'
+                  )"
+                >
+                  OPEN TEST
+                </button>
+
+
+                ${
+                  test.answersPdf
+                    ? `
+                      <button
+                        class="answer-btn"
+                        onclick="openAnswers(
+                          '${test.id}'
+                        )"
+                      >
+                        VIEW ANSWERS
+                      </button>
+                    `
+                    : ""
+                }
+
+              </div>
+
+            </div>
+
+          `
+        ).join("");
+    }
+
+
+    /* =====================================
+       OPEN NOTE PDF
+       ===================================== */
+
+    function openNote(fileUrl) {
+
+      window.open(
+        fileUrl,
+        "_blank"
+      );
+    }
+
+
+    /* =====================================
+       WATCH YOUTUBE
+       ===================================== */
+
+    function watchClass(url) {
+
+      window.open(
+        url,
+        "_blank"
+      );
+    }
+
+
+    /* =====================================
+       OPEN TEST
+       ===================================== */
+
+    async function openTest(testId) {
+
+      try {
+
+        const response =
+          await fetch("/api/data");
+
+        const data =
+          await response.json();
+
+        const test =
+          (data.tests || []).find(
+            item =>
+              item.id === testId
+          );
+
+
+        if (!test) {
+
+          alert(
+            "Test not found."
+          );
+
+          return;
+        }
+
+
+        const modal =
+          document.getElementById(
+            "testModal"
+          );
+
+        const body =
+          document.getElementById(
+            "modalBody"
+          );
+
+
+        body.innerHTML = `
+
+          <h2>
+            ${escapeHtml(
+              test.title
+            )}
+          </h2>
+
+          <p class="muted">
+
+            ${escapeHtml(
+              test.subject || ""
+            )}
+
+            ${
+              test.subject
+                ? " • "
+                : ""
+            }
+
+            ${formatDate(
+              test.date
+            )}
+
+          </p>
+
+
+          ${
+            test.questionsPdf
+              ? `
+                <div class="pdf-container">
+
+                  <iframe
+                    src="${test.questionsPdf}"
+                    title="Question Paper"
+                  ></iframe>
+
+                </div>
+              `
+              : `
+                <div class="empty">
+                  Question PDF is not available.
+                </div>
+              `
+          }
+
+
+          <div class="answer-section">
+
+            <label for="studentAnswers">
+              Your Answers
+            </label>
+
+            <textarea
+              id="studentAnswers"
+              placeholder="Type your answers here...
+
+Example:
+
+1. Answer...
+2. Answer...
+3. Answer..."
+            ></textarea>
+
+
+            <div class="actions">
+
+              <button
+                class="primary-btn"
+                onclick="submitAnswers(
+                  '${test.id}'
+                )"
+              >
+                SUBMIT ANSWERS
+              </button>
+
+
+              ${
+                test.answersPdf
+                  ? `
+                    <button
+                      class="answer-btn"
+                      onclick="openAnswers(
+                        '${test.id}'
+                      )"
+                    >
+                      VIEW ANSWERS
+                    </button>
+                  `
+                  : ""
+              }
+
+            </div>
+
+
+            <div
+              id="submitMessage"
+              class="message"
+            ></div>
+
+          </div>
+
+        `;
+
+        modal.classList.add(
+          "show"
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Unable to open this test."
+        );
+      }
+    }
+
+
+    /* =====================================
+       SUBMIT ANSWERS
+       ===================================== */
+
+    async function submitAnswers(testId) {
+
+      const textarea =
+        document.getElementById(
+          "studentAnswers"
+        );
+
+      const message =
+        document.getElementById(
+          "submitMessage"
+        );
+
+
+      if (!textarea) {
+        return;
+      }
+
+
+      const answers =
+        textarea.value.trim();
+
+
+      if (!answers) {
+
+        message.textContent =
+          "Please type your answers before submitting.";
+
+        message.className =
+          "message show error";
+
+        return;
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/tests/" +
+            testId +
+            "/submit",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                answers: answers
+              })
+            }
+          );
+
+
+        const result =
+          await response.json();
+
+
+        if (
+          !response.ok ||
+          !result.success
+        ) {
+
+          throw new Error(
+            result.message ||
+            "Unable to submit answers."
+          );
+        }
+
+
+        message.textContent =
+          "Your answers have been submitted successfully.";
+
+        message.className =
+          "message show success";
+
+
+        loadData();
+
+      } catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+          error.message;
+
+        message.className =
+          "message show error";
+      }
+    }
+
+
+    /* =====================================
+       OPEN ANSWERS PDF
+       ===================================== */
+
+    async function openAnswers(testId) {
+
+      try {
+
+        const response =
+          await fetch("/api/data");
+
+        const data =
+          await response.json();
+
+        const test =
+          (data.tests || []).find(
+            item =>
+              item.id === testId
+          );
+
+
+        if (!test) {
+          alert("Test not found.");
+          return;
+        }
+
+
+        if (!test.answersPdf) {
+
+          alert(
+            "Answer PDF has not been uploaded yet."
+          );
+
+          return;
+        }
+
+
+        const modal =
+          document.getElementById(
+            "testModal"
+          );
+
+        const body =
+          document.getElementById(
+            "modalBody"
+          );
+
+
+        body.innerHTML = `
+
+          <h2>
+            Answer Key
+          </h2>
+
+          <p class="muted">
+
+            ${escapeHtml(
+              test.title
+            )}
+
+          </p>
+
+
+          <div class="pdf-container">
+
+            <iframe
+              src="${test.answersPdf}"
+              title="Answer PDF"
+            ></iframe>
+
+          </div>
+
+
+          <div class="actions">
+
+            <button
+              class="secondary-btn"
+              onclick="closeModal()"
+            >
+              CLOSE
+            </button>
+
+          </div>
+
+        `;
+
+        modal.classList.add(
+          "show"
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Unable to open answer PDF."
+        );
+      }
+    }
+
+
+    /* =====================================
+       CLOSE MODAL
+       ===================================== */
+
+    function closeModal() {
+
+      document
+        .getElementById(
+          "testModal"
+        )
+        .classList.remove(
+          "show"
+        );
+    }
+
+
+    /* =====================================
+       MODAL OUTSIDE CLICK
+       ===================================== */
+
+    document
+      .getElementById(
+        "testModal"
+      )
+      .addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            event.target === this
+          ) {
+
+            closeModal();
+          }
+        }
+      );
+
+
+    /* =====================================
+       INITIAL LOAD
+       ===================================== */
+
+    loadTheme();
+
+    loadData();
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "notes": [
+    {
+      "id": "1790405908913",
+      "title": "Coupled Amplifier",
+      "subject": "Electrical Circuit Analysis",
+      "lesson": "Amplifiers",
+      "date": "2026-10-01",
+      "youtube": "",
+      "file": "/uploads/1790405908836-ECA_MID-1_Question_bank.pdf",
+      "originalFileName": "ECA MID-1 Question bank.pdf",
+      "createdAt": "2026-09-26T06:58:28.913Z"
+    }
+  ],
+  "tests": [
+    {
+      "id": "1790847823509",
+      "title": "Test 01",
+      "subject": "DSD",
+      "date": "2026-10-01",
+      "questionsPdf": "/uploads/1790847823469-DSD_QUESTION_BANK_MID__1_PDF.pdf",
+      "questionsPdfName": "DSD QUESTION BANK MID (1)PDF.pdf",
+      "answersPdf": "",
+      "answersPdfName": "",
+      "createdAt": "2026-10-01T09:43:43.509Z"
+    }
+  ],
+  "settings": {
+    "academyName": "ECE GATE Academy"
+  },
+  "submissions": [
+    {
+      "id": "1790847903132",
+      "testId": "1790847823509",
+      "testTitle": "Test 01",
+      "answers": "1. 20\n2. 15\n3. 45",
+      "submittedAt": "2026-10-01T09:45:03.132Z"
+    }
+  ]
+}
