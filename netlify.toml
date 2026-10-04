@@ -1,11 +1,20 @@
 [build]
   publish = "public"
-  functions = "netlify/functions"
-
-[functions]
-  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "https://ece-gate-academy-backend.onrender.com/api/:splat"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/uploads/*"
+  to = "https://ece-gate-academy-backend.onrender.com/uploads/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+  force = true
