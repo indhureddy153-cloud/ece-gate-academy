@@ -39,9 +39,9 @@ header {
 } 
  
 .logo {
-  width: 42px !important;
-  height: 42px !important;
-  margin: 0 auto 8px;
+  width: 5px !important;
+  height: 5px !important;
+  margin: 0 auto 6px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -52,19 +52,19 @@ header {
 }
 
 .logo img {
-  width: 42px !important;
-  height: 42px !important;
-  max-width: 42px !important;
-  max-height: 42px !important;
+  width: 5px !important;
+  height: 5px !important;
+  max-width: 5px !important;
+  max-height: 5px !important;
   object-fit: contain;
   display: block;
 }
 
 .logo img {
-  width: 42px;
-  height: 42px;
-  max-width: 42px;
-  max-height: 42px;
+  width: 5px;
+  height: 5px;
+  max-width: 5px;
+  max-height: 5px;
   object-fit: contain;
   display: block;
 }
