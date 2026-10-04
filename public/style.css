@@ -39,23 +39,32 @@ header {
 } 
  
 .logo {
-  width: 45px !important;
-  height: 45px !important;
+  width: 42px !important;
+  height: 42px !important;
   margin: 0 auto 8px;
   border-radius: 50%;
   overflow: hidden;
-  background: #1e1e1e;
-  border: 2px solid red;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
+  border: none;
 }
 
 .logo img {
-  width: 45px !important;
-  height: 45px !important;
-  max-width: 45px !important;
-  max-height: 45px !important;
+  width: 42px !important;
+  height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  object-fit: contain;
+  display: block;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  max-width: 42px;
+  max-height: 42px;
   object-fit: contain;
   display: block;
 }
