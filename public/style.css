@@ -38,18 +38,25 @@ header {
   gap: 12px; 
 } 
  
-.logo { 
-  width: 48px; 
-  height: 48px; 
-  border-radius: 12px; 
-  background: #173b7a; 
-  color: white; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 22px; 
-  font-weight: bold; 
-} 
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
  
 .logo-text h1 { 
   font-size: 21px; 
