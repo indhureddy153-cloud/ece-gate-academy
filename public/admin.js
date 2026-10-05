@@ -142,149 +142,263 @@ if (noteForm) {
   );
 }
 
+// ============================================
+// CREATE SHORT TEST - QUESTION BUILDER
+// ============================================
+
+let questionNumber = 0;
+
 
 // ============================================
-// CREATE PDF SHORT TEST
+// ADD QUESTION
 // ============================================
 
-if (testForm) {
+function addQuestion() {
 
-  testForm.addEventListener(
-    "submit",
-    async function (event) {
+  questionNumber++;
 
-      event.preventDefault();
+  const container =
+    document.getElementById(
+      "questionsContainer"
+    );
 
-      const questionFile =
-        document.getElementById(
-          "questionsPdf"
-        );
+  if (!container) {
+    return;
+  }
 
-      if (
-        !questionFile ||
-        !questionFile.files.length
-      ) {
+  const questionCard =
+    document.createElement("div");
 
-        alert(
-          "Please select the Question PDF."
-        );
+  questionCard.className =
+    "question-builder";
 
-        return;
-      }
+  questionCard.dataset.questionNumber =
+    questionNumber;
 
+  questionCard.innerHTML = `
 
-      const file =
-        questionFile.files[0];
+    <div class="question-builder-header">
 
+      <h3>
+        Question ${questionNumber}
+      </h3>
 
-      if (
-        !file.name
-          .toLowerCase()
-          .endsWith(".pdf")
-      ) {
+      <button
+        type="button"
+        class="danger-btn"
+        onclick="removeQuestion(this)"
+      >
+        REMOVE
+      </button>
 
-        alert(
-          "Please upload a PDF file only."
-        );
-
-        return;
-      }
+    </div>
 
 
-      const submitButton =
-        testForm.querySelector(
-          "button[type='submit']"
-        );
+    <div class="form-group">
 
-      submitButton.disabled =
-        true;
+      <label>
+        Question
+      </label>
 
-      submitButton.textContent =
-        "PUBLISHING...";
+      <textarea
+        class="test-question"
+        rows="4"
+        placeholder="Type the question here..."
+        required
+      ></textarea>
 
-
-      try {
-
-        const formData =
-          new FormData();
-
-        formData.append(
-          "title",
-          document.getElementById(
-            "testTitle"
-          ).value
-        );
-
-        formData.append(
-          "subject",
-          document.getElementById(
-            "testSubject"
-          ).value
-        );
-
-        formData.append(
-          "date",
-          document.getElementById(
-            "testDate"
-          ).value
-        );
-
-        formData.append(
-          "questionsPdf",
-          file
-        );
+    </div>
 
 
-        const response =
-          await fetch(
-            "/api/tests",
-            {
-              method: "POST",
-              body: formData
-            }
-          );
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          Option A
+        </label>
+
+        <input
+          type="text"
+          class="option-a"
+          placeholder="Option A"
+          required
+        >
+
+      </div>
 
 
-        const result =
-          await response.json();
+      <div class="form-group">
+
+        <label>
+          Option B
+        </label>
+
+        <input
+          type="text"
+          class="option-b"
+          placeholder="Option B"
+          required
+        >
+
+      </div>
 
 
-        if (!response.ok) {
+      <div class="form-group">
 
-          throw new Error(
-            result.message ||
-            "Unable to publish test."
-          );
-        }
+        <label>
+          Option C
+        </label>
 
+        <input
+          type="text"
+          class="option-c"
+          placeholder="Option C"
+          required
+        >
 
-        alert(
-          "Short Test published successfully!"
-        );
-
-
-        testForm.reset();
-
-        loadAdminData();
+      </div>
 
 
-      } catch (error) {
+      <div class="form-group">
 
-        console.error(error);
+        <label>
+          Option D
+        </label>
 
-        alert(
-          error.message ||
-          "Something went wrong."
-        );
+        <input
+          type="text"
+          class="option-d"
+          placeholder="Option D"
+          required
+        >
+
+      </div>
+
+    </div>
 
 
-      } finally {
+    <div class="form-group">
 
-        submitButton.disabled =
-          false;
+      <label>
+        Correct Answer
+      </label>
 
-        submitButton.textContent =
-          "PUBLISH SHORT TEST";
+      <div class="correct-answer-group">
+
+        <label>
+          <input
+            type="radio"
+            name="correct-${questionNumber}"
+            value="A"
+          >
+          A
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="correct-${questionNumber}"
+            value="B"
+          >
+          B
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="correct-${questionNumber}"
+            value="C"
+          >
+          C
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="correct-${questionNumber}"
+            value="D"
+          >
+          D
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Solution / Explanation
+      </label>
+
+      <textarea
+        class="question-solution"
+        rows="5"
+        placeholder="Type the complete solution / explanation..."
+        required
+      ></textarea>
+
+    </div>
+
+  `;
+
+  container.appendChild(
+    questionCard
+  );
+}
+
+
+// ============================================
+// REMOVE QUESTION
+// ============================================
+
+function removeQuestion(button) {
+
+  const card =
+    button.closest(
+      ".question-builder"
+    );
+
+  if (!card) {
+    return;
+  }
+
+  const container =
+    document.getElementById(
+      "questionsContainer"
+    );
+
+  card.remove();
+
+  renumberQuestions();
+
+}
+
+
+// ============================================
+// RENUMBER QUESTIONS
+// ============================================
+
+function renumberQuestions() {
+
+  const cards =
+    document.querySelectorAll(
+      ".question-builder"
+    );
+
+  cards.forEach(
+    function(card, index) {
+
+      const heading =
+        card.querySelector("h3");
+
+      if (heading) {
+
+        heading.textContent =
+          `Question ${index + 1}`;
+
       }
     }
   );
@@ -292,194 +406,405 @@ if (testForm) {
 
 
 // ============================================
-// LOAD TESTS INTO ANSWER SELECT
+// COLLECT QUESTIONS
 // ============================================
 
-function loadTestSelect(tests) {
+function collectQuestions() {
 
-  if (!answerTestSelect) {
-    return;
-  }
+  const cards =
+    document.querySelectorAll(
+      ".question-builder"
+    );
 
-
-  answerTestSelect.innerHTML =
-    `<option value="">
-      Select a test
-    </option>`;
+  const questions = [];
 
 
-  if (!tests.length) {
+  cards.forEach(
+    function(card) {
 
-    return;
-  }
+      const question =
+        card
+          .querySelector(
+            ".test-question"
+          )
+          .value
+          .trim();
 
 
-  tests.forEach(
-    function (test) {
+      const optionA =
+        card
+          .querySelector(
+            ".option-a"
+          )
+          .value
+          .trim();
 
-      const option =
-        document.createElement(
-          "option"
+
+      const optionB =
+        card
+          .querySelector(
+            ".option-b"
+          )
+          .value
+          .trim();
+
+
+      const optionC =
+        card
+          .querySelector(
+            ".option-c"
+          )
+          .value
+          .trim();
+
+
+      const optionD =
+        card
+          .querySelector(
+            ".option-d"
+          )
+          .value
+          .trim();
+
+
+      const correctRadio =
+        card.querySelector(
+          'input[type="radio"]:checked'
         );
 
-      option.value =
-        test.id;
 
-      option.textContent =
-        `${test.title} — ${test.date}`;
+      const solution =
+        card
+          .querySelector(
+            ".question-solution"
+          )
+          .value
+          .trim();
 
-      answerTestSelect.appendChild(
-        option
+
+      questions.push({
+
+        question:
+          question,
+
+        options: {
+
+          A: optionA,
+          B: optionB,
+          C: optionC,
+          D: optionD
+
+        },
+
+        correctAnswer:
+          correctRadio
+            ? correctRadio.value
+            : "",
+
+        solution:
+          solution
+
+      });
+
+    }
+  );
+
+
+  return questions;
+}
+
+
+// ============================================
+// VALIDATE QUESTIONS
+// ============================================
+
+function validateQuestions(
+  questions
+) {
+
+  if (!questions.length) {
+
+    alert(
+      "Please add at least one question."
+    );
+
+    return false;
+  }
+
+
+  for (
+    let i = 0;
+    i < questions.length;
+    i++
+  ) {
+
+    const q =
+      questions[i];
+
+
+    if (!q.question) {
+
+      alert(
+        `Please enter Question ${i + 1}.`
       );
+
+      return false;
     }
-  );
+
+
+    if (
+      !q.options.A ||
+      !q.options.B ||
+      !q.options.C ||
+      !q.options.D
+    ) {
+
+      alert(
+        `Please enter all options for Question ${i + 1}.`
+      );
+
+      return false;
+    }
+
+
+    if (!q.correctAnswer) {
+
+      alert(
+        `Please select the correct answer for Question ${i + 1}.`
+      );
+
+      return false;
+    }
+
+
+    if (!q.solution) {
+
+      alert(
+        `Please enter the solution for Question ${i + 1}.`
+      );
+
+      return false;
+    }
+
+  }
+
+
+  return true;
 }
 
 
 // ============================================
-// UPLOAD ANSWER PDF
+// PUBLISH SHORT TEST
 // ============================================
 
-if (answerForm) {
+async function publishShortTest() {
 
-  answerForm.addEventListener(
-    "submit",
-    async function (event) {
+  const titleInput =
+    document.getElementById(
+      "testTitle"
+    );
 
-      event.preventDefault();
+  const subjectInput =
+    document.getElementById(
+      "testSubject"
+    );
 
-
-      const testId =
-        answerTestSelect.value;
-
-
-      if (!testId) {
-
-        alert(
-          "Please select a Short Test."
-        );
-
-        return;
-      }
+  const dateInput =
+    document.getElementById(
+      "testDate"
+    );
 
 
-      const answerFile =
-        document.getElementById(
-          "answersPdf"
-        );
+  const title =
+    titleInput
+      ? titleInput.value.trim()
+      : "";
 
 
-      if (
-        !answerFile ||
-        !answerFile.files.length
-      ) {
-
-        alert(
-          "Please select the Answer PDF."
-        );
-
-        return;
-      }
+  const subject =
+    subjectInput
+      ? subjectInput.value.trim()
+      : "";
 
 
-      const file =
-        answerFile.files[0];
+  const date =
+    dateInput
+      ? dateInput.value
+      : "";
 
 
-      if (
-        !file.name
-          .toLowerCase()
-          .endsWith(".pdf")
-      ) {
+  if (!title) {
 
-        alert(
-          "Please upload a PDF file only."
-        );
+    alert(
+      "Please enter the Test Title."
+    );
 
-        return;
-      }
+    return;
+  }
 
 
-      const submitButton =
-        answerForm.querySelector(
-          "button[type='submit']"
-        );
+  if (!subject) {
+
+    alert(
+      "Please enter the Subject."
+    );
+
+    return;
+  }
 
 
-      submitButton.disabled =
-        true;
+  if (!date) {
 
-      submitButton.textContent =
-        "UPLOADING...";
+    alert(
+      "Please select the Test Date."
+    );
 
-
-      try {
-
-        const formData =
-          new FormData();
+    return;
+  }
 
 
-        formData.append(
-          "answersPdf",
-          file
-        );
+  const questions =
+    collectQuestions();
 
 
-        const response =
-          await fetch(
-            `/api/tests/${testId}/answers`,
-            {
-              method: "POST",
-              body: formData
-            }
-          );
+  if (
+    !validateQuestions(
+      questions
+    )
+  ) {
+
+    return;
+  }
 
 
-        const result =
-          await response.json();
+  const publishButton =
+    document.querySelector(
+      "button[onclick='publishShortTest()']"
+    );
 
 
-        if (!response.ok) {
+  if (publishButton) {
 
-          throw new Error(
-            result.message ||
-            "Unable to upload answers."
-          );
+    publishButton.disabled =
+      true;
+
+    publishButton.textContent =
+      "PUBLISHING...";
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/tests",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            title:
+              title,
+
+            subject:
+              subject,
+
+            date:
+              date,
+
+            questions:
+              questions
+
+          })
         }
+      );
 
 
-        alert(
-          "Answer PDF uploaded successfully!"
-        );
+    const result =
+      await response.json();
 
 
-        answerForm.reset();
+    if (
+      !response.ok ||
+      !result.success
+    ) {
 
-        loadAdminData();
+      throw new Error(
+        result.message ||
+        "Unable to publish Short Test."
+      );
 
-
-      } catch (error) {
-
-        console.error(error);
-
-        alert(
-          error.message ||
-          "Something went wrong."
-        );
-
-
-      } finally {
-
-        submitButton.disabled =
-          false;
-
-        submitButton.textContent =
-          "UPLOAD ANSWERS";
-      }
     }
-  );
-}
 
+
+    alert(
+      "Short Test published successfully!"
+    );
+
+
+    if (titleInput) {
+      titleInput.value = "";
+    }
+
+    if (subjectInput) {
+      subjectInput.value = "";
+    }
+
+    if (dateInput) {
+      dateInput.value = "";
+    }
+
+
+    const container =
+      document.getElementById(
+        "questionsContainer"
+      );
+
+    if (container) {
+
+      container.innerHTML =
+        "";
+
+    }
+
+
+    questionNumber = 0;
+
+
+    addQuestion();
+
+
+    loadAdminData();
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      error.message ||
+      "Something went wrong."
+    );
+
+
+  } finally {
+
+    if (publishButton) {
+
+      publishButton.disabled =
+        false;
+
+      publishButton.textContent =
+        "PUBLISH SHORT TEST";
+    }
+
+  }
+}
 
 // ============================================
 // RENDER NOTES

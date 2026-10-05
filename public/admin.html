@@ -17,7 +17,7 @@
     <div class="logo-area">
 
       <div class="logo">
-        G
+        <img src="/logo.jpeg" alt="ECE GATE Academy Logo">
       </div>
 
       <div class="logo-text">
@@ -59,335 +59,104 @@
 
     <section class="admin-card">
 
-      <h2>
-        Add Class Notes
-      </h2>
+    <h2>
+      Short Test
+    </h2>
 
-      <form id="noteForm">
+    <p class="admin-description">
+      Upload a text file containing questions, options,
+      correct answers and solutions.
+    </p>
 
-        <div class="form-grid">
+    <div class="form-grid">
 
-          <div class="form-group">
+    <div class="form-group">
 
-            <label>
-              Class Title
-            </label>
+      <label>
+        Test Title
+      </label>
 
-            <input
-              type="text"
-              id="noteTitle"
-              name="title"
-              placeholder="Example: Differential Equations - Class 1"
-              required
-            >
+      <input
+        type="text"
+        id="testTitle"
+        placeholder="Example: Network Theory Short Test"
+        required
+      >
 
-          </div>
+    </div>
 
 
-          <div class="form-group">
+    <div class="form-group">
 
-            <label>
-              Subject
-            </label>
+      <label>
+        Subject
+      </label>
 
-            <input
-              type="text"
-              id="noteSubject"
-              name="subject"
-              placeholder="Example: Engineering Mathematics"
-              required
-            >
+      <input
+        type="text"
+        id="testSubject"
+        placeholder="Example: Network Theory"
+        required
+      >
 
-          </div>
+    </div>
 
 
-          <div class="form-group">
+    <div class="form-group">
 
-            <label>
-              Lesson / Topic
-            </label>
+      <label>
+        Test Date
+      </label>
 
-            <input
-              type="text"
-              id="noteLesson"
-              name="lesson"
-              placeholder="Example: First Order Differential Equations"
-            >
+      <input
+        type="date"
+        id="testDate"
+        required
+      >
 
-          </div>
+    </div>
 
+  </div>
 
-          <div class="form-group">
 
-            <label>
-              Date
-            </label>
+  <div class="upload-box">
 
-            <input
-              type="date"
-              id="noteDate"
-              name="date"
-              required
-            >
+    <div class="upload-icon">
+      📝
+    </div>
 
-          </div>
+    <h3>
+      Question & Solution File
+    </h3>
 
-        </div>
+    <p>
+      Upload the .txt file containing all questions,
+      options, answers and solutions.
+    </p>
 
+    <input
+      type="file"
+      id="questionsFile"
+      accept=".txt"
+      required
+    >
 
-        <div class="form-group">
+    <small>
+      TXT only • Maximum 25 MB
+    </small>
 
-          <label>
-            YouTube Video Link
-            <span class="optional">
-              (Optional)
-            </span>
-          </label>
+  </div>
 
-          <input
-            type="url"
-            id="youtube"
-            name="youtube"
-            placeholder="https://youtube.com/..."
-          >
 
-        </div>
+  <button
+    type="button"
+    id="publishTestButton"
+    class="primary-btn"
+  >
+    PUBLISH SHORT TEST
+  </button>
 
-
-        <div class="form-group">
-
-          <label>
-            Notes / PPT / PDF
-            <span class="optional">
-              (Optional)
-            </span>
-          </label>
-
-          <input
-            type="file"
-            id="noteFile"
-            name="file"
-            accept=".pdf,.ppt,.pptx,.doc,.docx"
-          >
-
-          <small>
-            Maximum file size: 25 MB
-          </small>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="primary-btn"
-        >
-          PUBLISH CLASS NOTES
-        </button>
-
-      </form>
-
-    </section>
-
-
-    <!-- =====================================
-         PDF SHORT TEST
-         ===================================== -->
-
-    <section class="admin-card">
-
-      <h2>
-        Create PDF Short Test
-      </h2>
-
-      <p class="admin-description">
-        Upload the question paper as a PDF.
-        Students will open the PDF and type their answers on the website.
-      </p>
-
-
-      <form id="testForm">
-
-        <div class="form-grid">
-
-          <!-- TEST TITLE -->
-
-          <div class="form-group">
-
-            <label>
-              Test Title
-            </label>
-
-            <input
-              type="text"
-              id="testTitle"
-              name="title"
-              placeholder="Example: Differential Equations Short Test"
-              required
-            >
-
-          </div>
-
-
-          <!-- SUBJECT -->
-
-          <div class="form-group">
-
-            <label>
-              Subject
-            </label>
-
-            <input
-              type="text"
-              id="testSubject"
-              name="subject"
-              placeholder="Example: Engineering Mathematics"
-              required
-            >
-
-          </div>
-
-
-          <!-- DATE -->
-
-          <div class="form-group">
-
-            <label>
-              Test Date
-            </label>
-
-            <input
-              type="date"
-              id="testDate"
-              name="date"
-              required
-            >
-
-          </div>
-
-        </div>
-
-
-        <!-- QUESTION PDF -->
-
-        <div class="upload-box">
-
-          <div class="upload-icon">
-            📄
-          </div>
-
-          <h3>
-            Question Paper PDF
-          </h3>
-
-          <p>
-            Upload today's Short Test question paper.
-          </p>
-
-          <input
-            type="file"
-            id="questionsPdf"
-            name="questionsPdf"
-            accept=".pdf"
-            required
-          >
-
-          <small>
-            PDF only • Maximum 25 MB
-          </small>
-
-        </div>
-
-
-        <!-- PUBLISH -->
-
-        <button
-          type="submit"
-          class="primary-btn"
-        >
-          PUBLISH SHORT TEST
-        </button>
-
-      </form>
-
-    </section>
-
-
-    <!-- =====================================
-         UPLOAD ANSWER PDF
-         ===================================== -->
-
-    <section class="admin-card">
-
-      <h2>
-        Upload Answer Key
-      </h2>
-
-      <p class="admin-description">
-        Next day, select the test and upload the official answer PDF.
-      </p>
-
-
-      <form id="answerForm">
-
-        <div class="form-group">
-
-          <label>
-            Select Short Test
-          </label>
-
-          <select
-            id="answerTestSelect"
-            required
-          >
-
-            <option value="">
-              Select a test
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="upload-box">
-
-          <div class="upload-icon">
-            ✅
-          </div>
-
-          <h3>
-            Answer PDF
-          </h3>
-
-          <p>
-            Upload the official answers / solutions PDF.
-          </p>
-
-          <input
-            type="file"
-            id="answersPdf"
-            name="answersPdf"
-            accept=".pdf"
-            required
-          >
-
-          <small>
-            PDF only • Maximum 25 MB
-          </small>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="primary-btn"
-        >
-          UPLOAD ANSWERS
-        </button>
-
-      </form>
-
-    </section>
+  </section>
 
 
     <!-- =====================================

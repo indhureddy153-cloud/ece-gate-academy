@@ -577,6 +577,251 @@
         Class Notes • Daily Short Tests • Practice
       </p>
 
+      /* ============================================
+   TEXT BASED SHORT TEST
+   ============================================ */
+
+.test-session-header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+
+}
+
+.test-count-badge {
+
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: #eef4ff;
+  color: #173b7a;
+  font-weight: bold;
+  font-size: 14px;
+
+}
+
+
+.student-question-card {
+
+  background: #ffffff;
+  border: 1px solid #dce3ed;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 18px;
+
+}
+
+
+.student-question-card h3 {
+
+  margin-top: 0;
+  margin-bottom: 14px;
+
+}
+
+
+.question-text {
+
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+
+}
+
+
+.student-options {
+
+  display: grid;
+  gap: 10px;
+
+}
+
+
+.student-option {
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 15px;
+  border: 1px solid #d8e0ea;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+
+}
+
+
+.student-option:hover {
+
+  border-color: #173b7a;
+  background: #f7faff;
+
+}
+
+
+.student-option input {
+
+  width: 18px;
+  height: 18px;
+
+}
+
+
+.finish-test-area {
+
+  text-align: center;
+  margin-top: 24px;
+
+}
+
+
+.finish-test-btn {
+
+  min-width: 180px;
+
+}
+
+
+/* ============================================
+   RESULT
+   ============================================ */
+
+.result-summary {
+
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(130px, 1fr)
+    );
+  gap: 12px;
+  margin: 22px 0;
+
+}
+
+
+.result-box {
+
+  padding: 16px;
+  border: 1px solid #dce3ed;
+  border-radius: 12px;
+  text-align: center;
+  background: #fff;
+
+}
+
+
+.result-box span {
+
+  display: block;
+  font-size: 13px;
+  color: #687386;
+  margin-bottom: 7px;
+
+}
+
+
+.result-box strong {
+
+  font-size: 22px;
+
+}
+
+
+.solution-card {
+
+  border: 1px solid #dce3ed;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  background: #fff;
+
+}
+
+
+.result-answer-row {
+
+  display: grid;
+  grid-template-columns:
+    1fr 1fr;
+  gap: 15px;
+  margin: 16px 0;
+
+}
+
+
+.solution-status {
+
+  font-weight: bold;
+  margin: 12px 0;
+
+}
+
+
+.solution-status.correct {
+
+  color: #15803d;
+
+}
+
+
+.solution-status.wrong {
+
+  color: #dc2626;
+
+}
+
+
+.solution-status.unattempted {
+
+  color: #6b7280;
+
+}
+
+
+.solution-text {
+
+  padding: 15px;
+  border-radius: 10px;
+  background: #f7f9fc;
+
+}
+
+
+.solution-text h4 {
+
+  margin-top: 0;
+
+}
+
+
+.solution-text p {
+
+  line-height: 1.7;
+  white-space: normal;
+
+}
+
+
+@media (max-width: 700px) {
+
+  .test-session-header {
+
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  .result-answer-row {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
     </section>
 
 
@@ -1013,83 +1258,647 @@
 
 
       container.innerHTML =
-        tests.map(
-          test => `
+    tests.map(
+      function (test) {
 
-            <div class="test-card">
+        return `
 
-              <div class="test-head">
+          <div class="test-card">
 
-                <div>
+            <div class="test-head">
 
-                  <span class="badge">
-                    SHORT TEST
-                  </span>
+              <div>
+
+                <span class="badge">
+                  SHORT TEST
+                </span>
+
+                <h3>
+                  ${escapeHtml(
+                    test.title
+                  )}
+                </h3>
+
+                <p class="muted">
+
+                  ${escapeHtml(
+                    test.subject || ""
+                  )}
+
+                  ${
+                    test.subject
+                      ? " • "
+                      : ""
+                  }
+
+                  ${formatDate(
+                    test.date
+                  )}
+
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="actions">
+
+              <button
+                class="primary-btn"
+                onclick="openTest('${test.id}')"
+              >
+                START TEST
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+// ============================================
+// OPEN TEST
+// ============================================
+
+async function openTest(
+  testId
+) {
+
+  try {
+
+    const response =
+      await fetch(
+        `/api/tests/${testId}`
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      !response.ok ||
+      !data.success
+    ) {
+
+      throw new Error(
+        data.message ||
+        "Unable to load test."
+      );
+
+    }
+
+
+    const test =
+      data.test;
+
+
+    const modal =
+      document.getElementById(
+        "testModal"
+      );
+
+
+    const body =
+      document.getElementById(
+        "modalBody"
+      );
+
+
+    body.innerHTML = `
+
+      <div class="test-session">
+
+        <div class="test-session-header">
+
+          <div>
+
+            <h2>
+              ${escapeHtml(
+                test.title
+              )}
+            </h2>
+
+            <p class="muted">
+              ${escapeHtml(
+                test.subject || ""
+              )}
+              ${
+                test.subject
+                  ? " • "
+                  : ""
+              }
+              ${formatDate(
+                test.date
+              )}
+            </p>
+
+          </div>
+
+          <span class="test-count-badge">
+            ${test.questions.length}
+            Questions
+          </span>
+
+        </div>
+
+
+        <div class="student-test-questions">
+
+          ${test.questions.map(
+            function (q, index) {
+
+              return `
+
+                <div
+                  class="student-question-card"
+                >
 
                   <h3>
-                    ${escapeHtml(
-                      test.title
-                    )}
+                    Question ${index + 1}
                   </h3>
 
-                  <p class="muted">
 
+                  <div class="question-text">
                     ${escapeHtml(
-                      test.subject || ""
+                      q.question
+                    ).replace(
+                      /\n/g,
+                      "<br>"
                     )}
+                  </div>
+
+
+                  <div
+                    class="student-options"
+                  >
+
+                    ${["A","B","C","D"]
+                      .map(
+                        function (letter) {
+
+                          return `
+
+                            <label
+                              class="student-option"
+                            >
+
+                              <input
+                                type="radio"
+                                name="q-${q.id}"
+                                value="${letter}"
+                              >
+
+                              <span>
+
+                                <b>
+                                  ${letter})
+                                </b>
+
+                                ${escapeHtml(
+                                  q.options[
+                                    letter
+                                  ] || ""
+                                )}
+
+                              </span>
+
+                            </label>
+
+                          `;
+
+                        }
+                      )
+                      .join("")}
+
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          ).join("")}
+
+        </div>
+
+
+        <div class="finish-test-area">
+
+          <button
+            id="finishTestButton"
+            class="primary-btn finish-test-btn"
+            onclick="finishTest('${test.id}')"
+          >
+            FINISH TEST
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    modal.classList.add(
+      "show"
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      error
+    );
+
+
+    alert(
+      error.message ||
+      "Unable to open this test."
+    );
+
+  }
+
+}
+
+
+// ============================================
+// FINISH TEST
+// ============================================
+
+async function finishTest(
+  testId
+) {
+
+  const finishButton =
+    document.getElementById(
+      "finishTestButton"
+    );
+
+
+  if (finishButton) {
+
+    finishButton.disabled =
+      true;
+
+    finishButton.textContent =
+      "CALCULATING...";
+
+  }
+
+
+  try {
+
+    const answers = {};
+
+
+    const radioButtons =
+      document.querySelectorAll(
+        '.student-option input[type="radio"]:checked'
+      );
+
+
+    radioButtons.forEach(
+      function (radio) {
+
+        const questionId =
+          radio.name.replace(
+            "q-",
+            ""
+          );
+
+
+        answers[questionId] =
+          radio.value;
+
+      }
+    );
+
+
+    const response =
+      await fetch(
+        `/api/tests/${testId}/submit`,
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json"
+
+          },
+
+          body:
+            JSON.stringify({
+              answers:
+                answers
+            })
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if (
+      !response.ok ||
+      !result.success
+    ) {
+
+      throw new Error(
+        result.message ||
+        "Unable to finish test."
+      );
+
+    }
+
+
+    showTestResult(
+      result.result
+    );
+
+
+    loadData();
+
+
+  } catch (error) {
+
+    console.error(
+      error
+    );
+
+
+    alert(
+      error.message ||
+      "Unable to submit test."
+    );
+
+
+    if (finishButton) {
+
+      finishButton.disabled =
+        false;
+
+      finishButton.textContent =
+        "FINISH TEST";
+
+    }
+
+  }
+
+}
+
+
+// ============================================
+// SHOW RESULT + SOLUTIONS
+// ============================================
+
+function showTestResult(
+  result
+) {
+
+  const body =
+    document.getElementById(
+      "modalBody"
+    );
+
+
+  body.innerHTML = `
+
+    <div class="test-result">
+
+      <div class="result-header">
+
+        <h2>
+          Test Result
+        </h2>
+
+        <p class="muted">
+          ${escapeHtml(
+            result.testTitle
+          )}
+        </p>
+
+      </div>
+
+
+      <div class="result-summary">
+
+        <div class="result-box">
+          <span>Total Questions</span>
+          <strong>
+            ${result.totalQuestions}
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Attempted</span>
+          <strong>
+            ${result.attempted}
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Correct</span>
+          <strong>
+            ${result.correct}
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Wrong</span>
+          <strong>
+            ${result.wrong}
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Unattempted</span>
+          <strong>
+            ${result.unattempted}
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Score</span>
+          <strong>
+            ${result.score}
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Accuracy</span>
+          <strong>
+            ${result.accuracy}%
+          </strong>
+        </div>
+
+        <div class="result-box">
+          <span>Percentage</span>
+          <strong>
+            ${result.percentage}%
+          </strong>
+        </div>
+
+      </div>
+
+
+      <div class="solution-list">
+
+        <h2>
+          Questions & Solutions
+        </h2>
+
+
+        ${result.details.map(
+          function (item) {
+
+            const statusClass =
+              item.status ===
+              "Correct"
+                ? "correct"
+                : item.status ===
+                  "Wrong"
+                  ? "wrong"
+                  : "unattempted";
+
+
+            const statusIcon =
+              item.status ===
+              "Correct"
+                ? "✅"
+                : item.status ===
+                  "Wrong"
+                  ? "❌"
+                  : "⚪";
+
+
+            return `
+
+              <div
+                class="solution-card ${statusClass}"
+              >
+
+                <div class="solution-question">
+
+                  <h3>
+                    Question
+                    ${item.questionNumber}
+                  </h3>
+
+                  <p>
+                    ${escapeHtml(
+                      item.question
+                    ).replace(
+                      /\n/g,
+                      "<br>"
+                    )}
+                  </p>
+
+                </div>
+
+
+                <div
+                  class="result-answer-row"
+                >
+
+                  <div>
+
+                    <strong>
+                      Your Answer:
+                    </strong>
 
                     ${
-                      test.subject
-                        ? " • "
-                        : ""
+                      item.studentAnswer
+                        ? escapeHtml(
+                            item.studentAnswer
+                          )
+                        : "Not Attempted"
                     }
 
-                    ${formatDate(
-                      test.date
+                  </div>
+
+
+                  <div>
+
+                    <strong>
+                      Correct Answer:
+                    </strong>
+
+                    ${escapeHtml(
+                      item.correctAnswer
                     )}
 
+                  </div>
+
+                </div>
+
+
+                <div
+                  class="solution-status ${statusClass}"
+                >
+
+                  ${statusIcon}
+
+                  ${item.status}
+
+                </div>
+
+
+                <div class="solution-text">
+
+                  <h4>
+                    Solution
+                  </h4>
+
+                  <p>
+                    ${escapeHtml(
+                      item.solution
+                    ).replace(
+                      /\n/g,
+                      "<br>"
+                    )}
                   </p>
 
                 </div>
 
               </div>
 
+            `;
 
-              <div class="actions">
+          }
+        ).join("")}
 
-                <button
-                  class="primary-btn"
-                  onclick="openTest(
-                    '${test.id}'
-                  )"
-                >
-                  OPEN TEST
-                </button>
+      </div>
 
 
-                ${
-                  test.answersPdf
-                    ? `
-                      <button
-                        class="answer-btn"
-                        onclick="openAnswers(
-                          '${test.id}'
-                        )"
-                      >
-                        VIEW ANSWERS
-                      </button>
-                    `
-                    : ""
-                }
+      <div class="actions">
 
-              </div>
+        <button
+          class="secondary-btn"
+          onclick="closeModal()"
+        >
+          CLOSE
+        </button>
 
-            </div>
+      </div>
 
-          `
-        ).join("");
-    }
+    </div>
 
+  `;
+
+}
 
     /* =====================================
        OPEN NOTE PDF
